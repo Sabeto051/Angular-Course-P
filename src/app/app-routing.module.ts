@@ -6,6 +6,8 @@ import { SharedModule } from './modules/shared/shared.module';
 
 // Guardians
 import { AdminGuard } from './guardians/admin/admin.guard';
+import { OrderComponent } from './modules/order/components/order/order.component';
+import { OrderModule } from './modules/order/order.module';
 
 const routes: Routes = [
   {
@@ -33,6 +35,11 @@ const routes: Routes = [
           import('./modules/contact/contact.module').then(
             (m) => m.ContactModule
           ),
+      },
+      {
+        path: 'order',
+        loadChildren: () =>
+          import('./modules/order/order.module').then((m) => m.OrderModule),
       },
     ],
   },
