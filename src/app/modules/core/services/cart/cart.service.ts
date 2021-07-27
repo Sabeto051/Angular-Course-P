@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Product } from 'src/app/product.model';
+import { Product } from 'src/app/modules/core/models/product.model';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class CartService {
   private products: Product[] = [];
   private cart = new BehaviorSubject<Product[]>([]);
 
-  cart$ = this.cart.asObservable().pipe(map((prod) => prod.length));
+  cart$ = this.cart.asObservable();
 
   constructor() {}
 

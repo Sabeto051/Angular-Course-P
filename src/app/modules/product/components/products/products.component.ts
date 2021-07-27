@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/product.model';
+import { Product } from 'src/app/modules/core/models/product.model';
 import { ProductsService } from 'src/app/modules/core/services/products/products.service';
 import { CartService } from '../../../core/services/cart/cart.service';
 
@@ -31,6 +31,8 @@ export class ProductsComponent implements OnInit {
     });
   }
   createAllProducts() {
-    this.productsService.createAllProductsDev();
+    this.productsService.createAllProductsDev().then((res) => {
+      this.fetchProducts();
+    });
   }
 }

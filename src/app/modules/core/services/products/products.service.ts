@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../../../../product.model';
+import { Product } from '../../models/product.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class ProductsService {
+  // In case that all products get deleted on the api
   products: Product[] = [
     {
       id: '1',
@@ -70,9 +71,11 @@ export class ProductsService {
   }
 
   createAllProductsDev() {
-    this.products.forEach(async (product) => {
-      await this.createProduct2(product);
+    let promisesArr: Promise<any>[] = [];
+    this.products.forEach((product) => {
+      promisesArr.push(this.createProduct2(product));
     });
+    return Promise.all(promisesArr);
   }
 
   // CRUD

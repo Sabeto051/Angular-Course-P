@@ -13,6 +13,12 @@ import { AppComponent } from './app.component';
 import { DemoComponent } from './components/demo/demo.component';
 import { LayoutComponent } from './components/layout/layout.component';
 
+// Firebase
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [AppComponent, DemoComponent, LayoutComponent],
   imports: [
@@ -23,6 +29,9 @@ import { LayoutComponent } from './components/layout/layout.component';
     CoreModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFireStorageModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
